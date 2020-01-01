@@ -1,4 +1,5 @@
 import string
+import numpy as np
 
 
 def character_density(search_for, search_in):
@@ -27,7 +28,7 @@ class FormatFeatures:
         ]
 
     def patternExists(self, text):
-        return [pattern in text for pattern in self.formatting_pattern]
+        return np.array([pattern in text for pattern in self.formatting_pattern])
 
     def patternDensity(self, text):
-        return [text.count(pattern) for pattern in self.formatting_pattern]/ len(text)
+        return np.array([text.count(pattern) for pattern in self.formatting_pattern]) / len(text)
