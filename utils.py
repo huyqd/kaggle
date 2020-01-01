@@ -10,10 +10,10 @@ def setup_api_locally():
 
 
 def load(competition):
-    folder = "/data/{}".format(competition)
+    folder = os.getcwd()+"/data/{}".format(competition)
     if not os.path.isdir(folder):
         os.mkdir(folder)
-    os.system("kaggle competitions download -c {} -path {}".format(competition, folder))
+    os.system("kaggle competitions download {} -p {} --force".format(competition, folder))
 
 
 setup_api_locally()
