@@ -39,6 +39,20 @@ def load(competition):
     return
 
 
+def submit(competition, fname='submit.csv', message=None):
+    folder = root_path / "{}".format(competition)
+    fname += '' if fname.endswith('.csv') else '.csv'
+    fname = folder / fname
+    message = message if message else f"""Submission at {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"""
 
-setup_api_locally()
-load('google-quest-challenge')
+    if not fname.exists():
+        raise ValueError('Please save the output in "submit.csv" or point to a valid submit file.')
+
+    os.system(f'"kaggle competitions submit -c {competition} -f {str(fname)} -m "{message}"')
+
+    return
+
+
+if __name__ == '__main__':
+    setup_api_locally()
+    submit('google-quest-challenge')
